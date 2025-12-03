@@ -1,0 +1,122 @@
+@use '../variable.scss' as variable;
+@use '../mixin.scss' as mixin;
+@use '../breakpoint.scss' as breakpoint;
+
+.recipe-listing{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -15px;
+    row-gap: 30px;
+    justify-content: center;
+    .recipe-card{
+        width: 33.33%;
+        padding: 0px 15px;
+        @include mixin.respond(max,breakpoint.$breakpoint-xl){
+            width: 50%;
+        }
+        @include mixin.respond(max,breakpoint.$breakpoint-md){
+            width: 100%;
+        }
+        .card-wrapper{
+            height: 100%;
+            display: block;
+            .card-image-and-content{
+                position: relative;
+                padding-bottom: 100%;
+                .remove-from-favorites{
+                   position: absolute;
+                   right: 10px;
+                   top: 10px;
+                   z-index: 3;
+                   .btn{
+                    padding: 5px 10px;
+                    font-size: 13px;
+                    background-color: variable.$red-color;
+                    color: variable.$white-color;
+                    border-radius: 24px;
+                    border: 0px;
+                    &:hover{
+                       color: variable.$red-color;
+                       background-color: variable.$white-color;
+                    }
+                   }
+                }
+                img{
+                    object-fit: cover;
+                    border-radius: 24px;
+                }
+                .recipe-link{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 2;
+                }
+                .card-overlay-content{
+                    position: absolute;
+                    top: 60%;
+                    z-index: 3;
+                    padding: 15px 20px;
+                    width: 100%;
+                    @include mixin.respond(max,breakpoint.$breakpoint-xl){
+                        bottom: 30px;
+                        top: unset;
+                    }
+                    h3{
+                        color: variable.$white-color;
+                        font-size: 19px;
+                        line-height: 1.25;
+                        font-weight: 700;
+                        padding-bottom: 10px;
+                        @include mixin.respond(max,breakpoint.$breakpoint-md){
+                           font-size: 16px;
+                        }
+                    }
+                    .tags{
+                        display: flex;
+                        margin: 0px -5px;
+                        flex-wrap: wrap;
+                        row-gap: 5px;
+                        @include mixin.respond(max,breakpoint.$breakpoint-md){
+                            row-gap: 10px;
+                        }
+                        .tag-wrapper{
+                            width: 33.33%;
+                            padding: 0px 5px;
+                            .tag{
+                                width: 100%;
+                                padding: 5px;
+                                background: rgba(255, 255, 255, 0.15);
+                                border-radius: 1000px;
+                                text-align: center;
+                                color: variable.$white-color;
+                                transition: variable.$transition;
+                                font-size: 14px;
+                                line-height: 1.25;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                @include mixin.respond(max,breakpoint.$breakpoint-md){
+                                    font-size: 12px;
+                                }
+                                &:hover{
+                                    background: variable.$white-color;
+                                    color: variable.$black-color;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .overlay{
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+                border-radius: 24px;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+        }
+    }
+}

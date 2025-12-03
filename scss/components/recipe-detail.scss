@@ -1,0 +1,117 @@
+@use '../variable' as variable;
+@use '../mixin' as mixin;
+@use '../breakpoint' as breakpoint;
+
+.recipe-detail {
+  .container {
+    max-width: 790px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    margin: 0px -5px;
+    .tag-wrapper {
+      padding: 0px 5px;
+      a {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: variable.$black-color;
+        background-color: variable.$border-color;
+        border-radius: 1000px;
+        padding: 4px 8px;
+        text-align: center;
+        transition: variable.$transition;
+        @include mixin.respond(max, breakpoint.$breakpoint-xl) {
+          font-size: 13px;
+        }
+        &:hover {
+          color: variable.$white-color;
+          background-color: variable.$black-color;
+        }
+      }
+    }
+  }
+  .recipe-image {
+    position: relative;
+    padding-bottom: 56.316%;
+    margin: 32px 0px;
+    @include mixin.respond(max, breakpoint.$breakpoint-xl) {
+      margin: 20px 0px;
+    }
+    img {
+      border-radius: 24px;
+      object-fit: cover;
+    }
+  }
+  .review-and-actions {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .add-to-favorites{
+      .btn{
+          background-color: variable.$white-color;
+          padding: 5px;
+          border-radius: 50%;
+          font-size: 16px;
+          line-height: 1.25;
+          border: 1px solid variable.$add-to-favorites-color;
+      }
+    }
+    .rating-and-reviews {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      .review-count {
+        line-height: 1;
+        font-size: 14px;
+        color: variable.$black-color;
+        font-weight: 400;
+        @include mixin.respond(max, breakpoint.$breakpoint-xl) {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+    @include mixin.respond(max, breakpoint.$breakpoint-xl) {
+      padding-bottom: 10px;
+    }
+    &.instructions {
+      list-style: auto;
+      padding-left: 20px;
+      li {
+        position: static;
+        padding-left: 0px;
+      }
+    }
+    li {
+      font-size: 19px;
+      color: variable.$light-black-color;
+      line-height: 1.612;
+      padding-left: 15px;
+      font-weight: 400;
+      position: relative;
+
+      @include mixin.respond(max, breakpoint.$breakpoint-xl) {
+        font-size: 16px;
+      }
+      &::after {
+        position: absolute;
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: variable.$black-color;
+        left: 3px;
+        top: 12px;
+      }
+    }
+  }
+}
